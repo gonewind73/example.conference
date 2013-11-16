@@ -18,6 +18,7 @@ from zope.interface import invariant, Invalid
 from zope.lifecycleevent import ObjectCreatedEvent
 import datetime
 
+from plone.dexterity.content import Container
 
 class StartBeforeEnd(Invalid):
     __doc__ = _(u"The start or end date is invalid")
@@ -111,6 +112,8 @@ def tracksIndexer(obj):
 grok.global_adapter(tracksIndexer, name="Subject")
 
 
+class Program(Container):           
+    grok.implements(IProgram)
 # Views
 
 class View(grok.View):
