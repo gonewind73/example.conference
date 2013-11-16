@@ -14,6 +14,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 from zope.security import checkPermission
 import plone.autoform.directives as form
 
+from plone.dexterity.content import Container
 
 @grok.provider(IContextSourceBinder)
 def possibleTracks(context):
@@ -65,6 +66,8 @@ class ISession(model.Schema):
         required=False,
     )
 
+class Session(Container):           
+    grok.implements(ISession)
 
 class View(dexterity.DisplayForm):
     grok.context(ISession)
