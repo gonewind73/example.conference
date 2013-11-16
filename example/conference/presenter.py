@@ -7,6 +7,7 @@ from plone.supermodel import model
 from zope.container.interfaces import IObjectAddedEvent
 from zope import schema
 
+from plone.dexterity.content import Container
 
 class IPresenter(model.Schema):
     """A conference presenter. Presenters can be added anywhere.
@@ -56,6 +57,8 @@ def notifyUser(presenter, event):
         if email is not None:
             mail_host.secureSend(message, email, sender, subject)
 
+class Presenter(Container):           
+    grok.implements(IPresenter)
 
 class View(grok.View):
     grok.context(IPresenter)
